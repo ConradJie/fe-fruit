@@ -7,10 +7,12 @@ import TextField from "./components/TextField.jsx";
 
 function App() {
 
-    const [aardbeien, setAardbeien] = useState(0);
-    const [bananen, setBananen] = useState(0);
-    const [appels, setAppels] = useState(0);
-    const [kiwis, setKiwis] = useState(0);
+    const [fruitAmount, setFruitAmount] = useState({
+        aardbeien: 0,
+        bananen: 0,
+        appels: 0,
+        kiwis: 0
+    });
 
     const [formState, setFormState] = useState({
         firstName: '',
@@ -25,8 +27,18 @@ function App() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(aardbeien, bananen, appels, kiwis);
+        console.log(fruitAmount);
         console.log(formState);
+    }
+
+    function handleFruitClick(e) {
+        const changedFieldName = e.currentTarget.name;
+        const newValue = fruitAmount[changedFieldName] +
+            ((e.currentTarget.id === "add")? 1 : -1);
+        setFruitAmount({
+            ...fruitAmount,
+            [changedFieldName]: newValue,
+        });
     }
 
     function handleFormChange(e) {
@@ -45,41 +57,51 @@ function App() {
             <h1>Fruitmand bezorgservice</h1>
             <Fruit
                 title="Aardbeien"
-                fruit={aardbeien}
-                setFruit={setAardbeien}
+                id="aardbeien"
+                fruitAmount={fruitAmount.aardbeien}
+                disabled={fruitAmount.aardbeien === 0}
                 imgUrl="./aardbei.jpg"
                 imgAlt="Aardbei"
+                onClick={handleFruitClick}
             />
             <Fruit
                 title="Bananen"
-                fruit={bananen}
-                setFruit={setBananen}
+                id="bananen"
+                fruitAmount={fruitAmount.bananen}
+                disabled={fruitAmount.bananen === 0}
                 imgUrl="./banaan.jpg"
                 imgAlt="Banaan"
+                onClick={handleFruitClick}
             />
             <Fruit
                 title="Appels"
-                fruit={appels}
-                setFruit={setAppels}
+                id="appels"
+                fruitAmount={fruitAmount.appels}
+                disabled={fruitAmount.appels === 0}
                 imgUrl="./appel.jpg"
                 imgAlt="Appel"
+                onClick={handleFruitClick}
             />
             <Fruit
                 title="Kiwi's"
-                fruit={kiwis}
-                setFruit={setKiwis}
+                id="kiwis"
+                fruitAmount={fruitAmount.kiwis}
+                disabled={fruitAmount.kiwis === 0}
                 imgUrl="./kiwi.jpg"
                 imgAlt="Kiwi"
+                onClick={handleFruitClick}
             />
             <Button
                 type="button"
                 id="reset"
                 label="Reset"
                 onClickHandle={() => {
-                    setAardbeien(0);
-                    setBananen(0);
-                    setAppels(0);
-                    setKiwis(0);
+                    setFruitAmount({
+                        aardbeien: 0,
+                        bananen: 0,
+                        appels: 0,
+                        kiwis: 0
+                    });
                 }}
             />
             <form className="order-form" onSubmit={handleSubmit}>
