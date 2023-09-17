@@ -1,6 +1,9 @@
 import './App.css'
 import {useState} from "react";
 import Fruit from "./components/Fruit.jsx";
+import InputField from "./components/InputField.jsx";
+import Button from "./components/Button.jsx";
+import TextField from "./components/TextField.jsx";
 
 function App() {
 
@@ -14,7 +17,7 @@ function App() {
         lastName: '',
         age: 0,
         zipcode: '',
-        freq: '',
+        freq: 'weekly',
         dayTime: '',
         remark: '',
         agreement: false,
@@ -22,6 +25,7 @@ function App() {
 
     function handleSubmit(e) {
         e.preventDefault();
+        console.log(aardbeien, bananen, appels, kiwis);
         console.log(formState);
     }
 
@@ -43,62 +47,69 @@ function App() {
                 title="Aardbeien"
                 fruit={aardbeien}
                 setFruit={setAardbeien}
-                imgUrl="./public/aardbei.jpg"
-                imgAlt="Aartbei"
+                imgUrl="./aardbei.jpg"
+                imgAlt="Aardbei"
             />
             <Fruit
                 title="Bananen"
                 fruit={bananen}
                 setFruit={setBananen}
-                imgUrl="./public/banaan.jpg"
+                imgUrl="./banaan.jpg"
                 imgAlt="Banaan"
             />
             <Fruit
                 title="Appels"
                 fruit={appels}
                 setFruit={setAppels}
-                imgUrl="./public/appel.jpg"
+                imgUrl="./appel.jpg"
                 imgAlt="Appel"
             />
             <Fruit
                 title="Kiwi's"
                 fruit={kiwis}
                 setFruit={setKiwis}
-                imgUrl="./public/kiwi.jpg"
+                imgUrl="./kiwi.jpg"
                 imgAlt="Kiwi"
             />
-            <button
+            <Button
                 type="button"
                 id="reset"
-                onClick={() => {
+                label="Reset"
+                onClickHandle={() => {
                     setAardbeien(0);
                     setBananen(0);
                     setAppels(0);
                     setKiwis(0);
                 }}
-            >Reset
-            </button>
-
+            />
             <form className="order-form" onSubmit={handleSubmit}>
-                <label htmlFor="firstName">Voornaam</label>
-                <input type="text" id="firstName" name="firstName"
-                       value={formState.name}
-                       onChange={handleFormChange}
+                <InputField
+                    type="text"
+                    id="firstName"
+                    label="Voornaam"
+                    value={formState.name}
+                    onChange={handleFormChange}
                 />
-                <label htmlFor="last-name">Achternaam</label>
-                <input type="text" id="lastName" name="lastName"
-                       value={formState.name}
-                       onChange={handleFormChange}
+                <InputField
+                    type="text"
+                    id="lastName"
+                    label="Achternaam"
+                    value={formState.name}
+                    onChange={handleFormChange}
                 />
-                <label htmlFor="age">Leeftijd</label>
-                <input type="number" id="age" name="age"
-                       value={formState.name}
-                       onChange={handleFormChange}
+                <InputField
+                    type="number"
+                    id="age"
+                    label="Leeftijd"
+                    value={formState.name}
+                    onChange={handleFormChange}
                 />
-                <label htmlFor="zipcode">postcode</label>
-                <input type="text" id="zipcode" name="zipcode"
-                       value={formState.name}
-                       onChange={handleFormChange}
+                <InputField
+                    type="text"
+                    id="zipcode"
+                    label="Postcode"
+                    value={formState.name}
+                    onChange={handleFormChange}
                 />
                 <label htmlFor="freq">Bezorgfrequentie</label>
                 <select id="freq" name="freq"
@@ -110,34 +121,42 @@ function App() {
                     <option value="monthly">Iedere maand</option>
                 </select>
                 <div className="dayTime">
-                    <label htmlFor="dayTime"><input type="radio" name="dayTime"
-                                                    value={formState.name}
-                                                    onChange={handleFormChange}
-                    />Overdag</label>
-                    <label htmlFor="dayTime"><input type="radio" name="dayTime"
-                                                    value={formState.name}
-                                                    onChange={handleFormChange}
-                    />s Avonds</label>
+                    <InputField
+                        type="radio"
+                        id="dayTime"
+                        label="Overdag"
+                        value="daytime"
+                        onChange={handleFormChange}
+                    />
+                    <InputField
+                        type="radio"
+                        id="dayTime"
+                        label="'s Avonds"
+                        value="evening"
+                        onChange={handleFormChange}
+                    />
                 </div>
-                <div>
-                    <label htmlFor="remakr">Opmerking</label>
-                    <textarea className="remark" name="remark" id="remark"
-                              value={formState.name}
-                              onChange={handleFormChange}
-                    >
-                    </textarea>
-                </div>
+                <TextField
+                    id="remark"
+                    className="remark"
+                    label="Opmerking"
+                    value={formState.name}
+                    onChange={handleFormChange}
+                />
                 <div className="agreement">
-                    <label htmlFor="agreement">
-                        <input type="checkbox" name="agreement" id="agreement"
-                               value={formState.name}
-                               onChange={handleFormChange}
-                        />Ik ga akkoord met de voorwaarden
-                    </label>
+                    <InputField
+                        type="checkbox"
+                        id="agreement"
+                        label="Ik ga akkoord met de voorwaarden"
+                        value={formState.name}
+                        onChange={handleFormChange}
+                    />
                 </div>
-                <button type="submit" disabled={!formState.agreement}>Verzend
-                </button>
-
+                <Button
+                    type="submit"
+                    label="Verzend"
+                    disabled={!formState.agreement}
+                />
             </form>
         </>
     )
