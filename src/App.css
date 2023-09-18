@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#reset {
+    margin: 0 16px;
+    max-width: 300px;
+    min-width: 300px;
+}
+
+.order-form {
+    max-width: 400px;
+    margin: 0 16px;
+}
+
+.order-form input {
+    min-width: 300px;
+    margin: 10px;
+}
+
+.remark {
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    width: 300px;
+}
+
+.dayTime input {
+    min-width: 10px;
+    max-width: 100px;
+}
+
+#agreement {
+    min-width: 10px;
+}

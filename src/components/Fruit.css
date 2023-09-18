@@ -1,0 +1,27 @@
+.Fruit {
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 300px;
+    min-width: 250px;
+    margin: 16px 16px;
+    padding: 16px 0;
+}
+
+.Fruit img {
+    max-height: 32px;
+}
+
+.Fruit button {
+    margin: 0 5px;
+}
+
+xGreen {
+    background-color: greenyellow;
+}
+
+.White {
+    background-color: white;
+}
