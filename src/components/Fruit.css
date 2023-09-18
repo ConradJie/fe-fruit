@@ -1,4 +1,4 @@
-.Fruit{
+.Fruit {
     border: 1px solid black;
     border-radius: 10px;
     display: flex;
@@ -16,4 +16,12 @@
 
 .Fruit button {
     margin: 0 5px;
+}
+
+xGreen {
+    background-color: greenyellow;
+}
+
+.White {
+    background-color: white;
 }

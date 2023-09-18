@@ -10,6 +10,7 @@ function Fruit({id, title, fruitAmount, disabled, imgUrl, imgAlt, onClick}) {
                 id="subtract"
                 name={id}
                 disabled={disabled}
+                className={fruitAmount > 0 ? "Green" : "White"}
                 onClick={onClick}
             >-
             </button>
@@ -18,6 +19,7 @@ function Fruit({id, title, fruitAmount, disabled, imgUrl, imgAlt, onClick}) {
                 type="button"
                 id="add"
                 name={id}
+                className={fruitAmount > 0 ? "Green" : "White"}
                 onClick={onClick}
             >+
             </button>
